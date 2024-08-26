@@ -17,8 +17,8 @@
     // reguser
      $idUser = $_SESSION['id_user'];
     // productbasket + products
-    $sql = "SELECT DISTINCT products.name, products.price, products.author, products.image, productbasket.*
-    FROM productbasket
+    $sql = "SELECT products.name, products.price, products.author, products.image, productbasket.* 
+    FROM productbasket 
     INNER JOIN products ON productbasket.productid = products.id
     WHERE productbasket.productuserid = '$idUser'";
      $result = $connect -> query($sql);
@@ -37,7 +37,6 @@
                     <p><?php echo $row['name']; ?></p>
                     <p>By <?php echo $row['author']; ?></p>
                     <p><?php echo $row['price']; ?>$</p>
-                    <p>ID:<?php echo $row['id']; ?></p>
                 </div>
             </div>
         <?php

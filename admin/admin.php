@@ -38,6 +38,8 @@ if ($_SESSION['role_user'] != 'admin') {
         <input type="file" name="image" accept="image/png, image/jpg, image/jpeg" required>
         <label for="author">author</label>
         <input name="author" id="author" type="text" required>
+        <label for="display">Do you want to hide?</label>
+        <input name="display" id="display" type="checkbox" value="hide">
         <button type="submit">Add book</button>
     </form>
     <div class="bookCardDiv">
@@ -47,6 +49,9 @@ if ($_SESSION['role_user'] != 'admin') {
         $result = $connect->query($sql);
         $row = $result->fetch_assoc();
         ?>
+        <script> 
+       
+        </script>
         <?php
         // echo 'result';
         // var_dump($result);
@@ -64,7 +69,7 @@ if ($_SESSION['role_user'] != 'admin') {
                 </div>
                 <div class="adminButtons">
                     <a href="editProduct.php?id=<?php echo $pr['id']?>">Edit</a>
-                    <button class="deleteButton" href="deleteProduct.php?id=<?php echo $pr['id']?>">Delete</button>
+                    <button class="deleteButton">Delete</button>
                 </div>
             </div>
             <?php
@@ -76,19 +81,22 @@ if ($_SESSION['role_user'] != 'admin') {
     <?php } ?>
     <script src="../js/setTimeOut.js"></script>
     <script>
+         let deleteTarget = document.querySelectorAll('.bookCard');
         let deleteButton = document.querySelectorAll('.deleteButton');
+        console.log(deleteButton);   
         deleteButton.forEach(e => {
             e.addEventListener("click", askDelete)
         function askDelete() {
-            let answerDelete = confirm("Do you want to delete this book?");
-            if (answerDelete == true) {
+            let answerDelete = window.confirm("Do you want to delete this book?"); 
+            console.log(answerDelete);
+            if (answerDelete) {
                 console.log('deleted');
+                window.location.href = 'deleteProduct.php?id=<?php echo $pr['id']?>'
             } else {
                 console.log('not deleted');
-            }  
+            } 
         }
         });
-  
     </script>
 </body>
 </html>

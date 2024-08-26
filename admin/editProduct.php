@@ -11,6 +11,7 @@ $description = $_POST["description"];
 $price = $_POST["price"];
 $category = $_POST["category"];
 $author = $_POST["author"];
+$display = $_POST["display"];
 // $uploadfile = $uploaddir . '/' . basename($_FILES['image']['name']);
 // $uploadimage = basename($_FILES['image']['name']);
 // if (!getimagesize($_FILES["image"]["tmp_name"])) {
@@ -22,7 +23,7 @@ $author = $_POST["author"];
 // } else {
 //     echo "Возможная атака с помощью файловой загрузки!\n";
 // }
-    $sqlUpdate = "UPDATE products SET name='$name', description='$description', price='$price', category='$category', author='$author' WHERE id=$idProduct";
+    $sqlUpdate = "UPDATE products SET name='$name', description='$description', price='$price', category='$category', author='$author', display='$display' WHERE id=$idProduct";
     if ($connect->query($sqlUpdate) === TRUE) {
     echo "New record created successfully";
     $message = "Congrats! Editing book is successful";
@@ -54,7 +55,7 @@ $author = $_POST["author"];
         <input value="<?php echo $row['price'] ?>" name="price" id="price" type="text" required>
         <label for="category">category</label>
         <select name="category" id="category" required>
-            <option selected disabled value="<?php echo $row['category'] ?>"> Current
+            <option selected value="<?php echo $row['category'] ?>" > Current
                 category:<?php echo $row['category'] ?></option>
             <option value="fantasy">Fantasy</option>
             <option value="novel">Novel</option>
@@ -66,6 +67,11 @@ $author = $_POST["author"];
         <input type="file" name="image" accept="image/png, image/jpg, image/jpeg" required>
         <label for="author">author</label>
         <input value="<?php echo $row['author'] ?>" name="author" id="author" type="text" required>
+        <p>Display: <?php echo $row['display'] ?></p>
+        <label for="show">Show</label>
+        <input type="radio" name="display" id="show" value="show">
+        <label for="hide">Hide</label>
+        <input type="radio" name="display" id="hide" value="hide">
         <button type="submit">Edit book</button>
     </form>
 </body>

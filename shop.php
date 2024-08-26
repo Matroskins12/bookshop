@@ -24,9 +24,9 @@
     <?php
         if(isset($_GET["category"])){
             $categoryProduct = $_GET["category"];
-            $sql =  "SELECT * FROM products WHERE category='$categoryProduct'";
+            $sql =  "SELECT * FROM products WHERE category='$categoryProduct', display='show'";
         } else {
-            $sql = "SELECT * FROM products";
+            $sql = "SELECT * FROM products WHERE display='show'";
         }
         $result = $connect -> query($sql);
         $row = $result -> fetch_assoc();
