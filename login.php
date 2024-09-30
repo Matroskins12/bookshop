@@ -12,7 +12,7 @@
 </head>
 <body>
 <?php require "./components/header.php" ?>
-    <form action="./login/logdata.php" method="post">
+    <form action="./logic/logdata.php" method="post">
         <label for="email">email</label>
         <input id="email" name="email" type="email" required>
         <label for="password">password</label>

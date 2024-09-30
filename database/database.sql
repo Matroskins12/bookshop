@@ -24,3 +24,19 @@ CREATE TABLE productbasket(
     productaddtime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`productid`) REFERENCES `products`(`id`)
 );
+CREATE TABLE bookcomments(
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    productid INT NOT NULL,
+    userid INT NOT NULL,  
+    username VARCHAR(100) NOT NULL,
+    comment VARCHAR(255) NOT NULL,
+    raiting INT NOT NULL,   
+    commentime TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+);
+-- CREATE TABLE orderproduct(
+-- 	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+--     name VARCHAR(255) NOT NULL,
+--     price INT NOT NULL,
+--     quantity INT NOT NULL,
+--     total INT NOT NULL
+-- );

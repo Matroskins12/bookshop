@@ -5,6 +5,7 @@
     $price = $_POST["price"];
     $category = $_POST["category"];
     $author = $_POST["author"];
+    $display = $_POST["display"] || "show";
     $uploaddir = dirname(__FILE__, 2) . "/image";
     if (!file_exists($uploaddir)) {
       mkdir($uploaddir, 775, true);
@@ -22,8 +23,7 @@
       echo "Возможная атака с помощью файловой загрузки!\n";
     }
     var_dump($uploadfile);
-    //
-    $sql = "INSERT INTO products (name, description, price, category, image, author) VALUES('$name', '$description', '$price', '$category', '$uploadimage', '$author')";
+    $sql = "INSERT INTO products (name, description, price, category, image, author, display) VALUES('$name', '$description', '$price', '$category', '$uploadimage', '$author', '$display')";
     if ($connect->query($sql) === TRUE) {
         echo "New record created successfully";
         $message = "Congrats! Adding new book is successful";

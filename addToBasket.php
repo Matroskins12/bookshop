@@ -13,19 +13,26 @@
 <body>
     <?php require "./components/header.php" ?>
     <?php require "./database/connect.php";
-    $iduser = $_SESSION['id_user'];
+    $idUser = $_SESSION['id_user'];
     $idProduct = $_GET["id"];
+    $sqlBasket = "SELECT * FROM productbasket WHERE productuserid = '$idUser' AND productid = '$idProduct'";
+    $resultBasket = $connect -> query($sqlBasket);
+    if ($resultBasket -> num_rows > 0) {
+        $message = "This book had already been added";
+        header("Location: ./shop.php?message=$message"); 
+    } else {
+        $sqlInsert = "INSERT INTO productbasket (productid, productquantity, productuserid) VALUES('$idProduct', '1', '$idUser')";
+        if ($connect->query($sqlInsert) === TRUE) {
+            echo "New book added to your basket";
+            $message = "Congrats! Adding new book is successful";
+            header("Location: ./shop.php?message=$message");
+          } else {
+            echo "Error: " . $sqlInsert . "<br>" . $connect->error;
+          }
+    }
     $sqlSelect = "SELECT * FROM products WHERE id=$idProduct";
     $result = $connect -> query($sqlSelect);
     $row = $result -> fetch_assoc();
-    $sqlAdd = "INSERT INTO productbasket (productid, productquantity, productuserid) VALUES('$idProduct', '1', '$iduser')";
-    if ($connect->query($sqlAdd) === TRUE) {
-        echo "New record created successfully";
-        // $message = "Congrats! Adding new book is successful";
-        // header("Location: ../admin/admin.php?message=$message");
-      } else {
-        echo "Error: " . $sqlAdd . "<br>" . $connect->error;
-      }
       $connect -> close();
     ?>
     <div class="bookCard">

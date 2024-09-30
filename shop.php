@@ -45,18 +45,11 @@
                     <p><?php echo $pr['name']; ?></p>
                     <p>By <?php echo $pr['author']; ?></p>
                     <p><?php echo $pr['price']; ?>$</p>
+                    <a href="./bookInfo.php?id=<?php echo $pr['id']?>">See more</a>
                     <?php 
-                        if (isset($_SESSION['login_user'])) {
+                        if (!isset($_SESSION['login_user'])) {
                             ?>
-                                <div>
-                                    <a class="" href="./addToBasket.php?id=<?php echo $pr['id']?>">
-                                        <i class="fa-solid fa-cart-shopping"></i>
-                                    </a>
-                                </div>
-                            <?php
-                        } else {
-                            ?>
-                                <a href="login.php">Login to buy</a>
+                            <a href="login.php">Login to buy</a>
                             <?php
                         }
                     ?>

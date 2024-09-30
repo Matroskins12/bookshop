@@ -51,9 +51,7 @@
                 <div class="bookCardDescription">
                     <p><?php echo $row['name']; ?></p>
                     <p>By <?php echo $row['author']; ?></p>
-                    <p><?php echo $row['price']; ?>$</p>
-                    <p>ID:<?php echo $row['id']; ?></p>
-                   
+                    <p><?php echo $row['price']; ?>$</p> 
                 </div>
             </div>
             <?php
