@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
     margin: 0;
     padding: 0;
@@ -127,4 +128,111 @@ nav {
     align-items: center;
     border-left: 3px solid black;
     gap: 30px;
+=======
+* {
+    margin: 0;
+    padding: 0;
+}
+.deleteButton{
+
+}
+a {
+    font-size: 25px;
+    font-weight: 800;
+    text-decoration: none;
+    color: black;
+}
+p {
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+}
+input {
+    font-size: 25px;
+    font-weight: 800;
+    text-decoration: none;
+    color: black;
+    width: 200px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+label {
+        font-size: 25px;
+        font-weight: 800;
+        text-decoration: none;
+        color: black;
+}
+.exitInput{
+    background-color: transparent;
+    border: none;
+    color: white;
+    width: max-content;
+    cursor: pointer;
+}
+.submitButton {
+    font-size: 25px;
+    font-weight: 800;
+    text-decoration: none;
+    color: black;
+}
+nav {
+    background-color: black;
+}
+.navUl{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 100px;
+    list-style-type: none;
+}
+.navLi{
+    color: white;
+    text-decoration: none;
+}
+.productForm{
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+}
+.bookCard{
+    border: 3px solid black;
+    display: flex;
+    flex-direction: row;
+    height: 200px;
+    justify-content: space-between;
+}
+.hide{
+    display: none;
+}
+.bookCardImgDiv{
+    width: 100px;
+    height: 200px;
+}
+.bookImg{
+    width: 100px;
+    height: 200px;
+}
+.bookCardDiv{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    /* max-width: 1200px; */
+    gap: 10px;
+}
+.bookCardDescription{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    gap: 10px;
+}
+.adminButtons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-left: 3px solid black;
+    gap: 30px;
+>>>>>>> eb38ab8125a0fdf0bf4013ddc1a540cd5816213e
 }
