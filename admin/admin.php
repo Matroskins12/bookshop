@@ -81,8 +81,9 @@ if ($_SESSION['role_user'] != 'admin') {
     <?php } ?>
     <div class="userList">
         <?php
-        $searchValue = $_POST['search'];
-        var_dump($searchValue);
+        if ($_POST) {
+            $searchValue = $_POST['search'];
+        }
         if (empty($searchValue)) {
             $sqlUser = "SELECT * FROM regusers";
             $resultUser = $connect->query($sqlUser);
@@ -97,7 +98,7 @@ if ($_SESSION['role_user'] != 'admin') {
         <div class="userFind">
             <form action="" method="post">
                 <label for="search">Type firstname or lastname</label><br>
-                <input id="search" name="search" type="text" required>
+                <input id="search" name="search" type="text">
                 <button type="submit">Search</button>
             </form>
         </div>
