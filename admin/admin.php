@@ -16,7 +16,7 @@ if ($_SESSION['role_user'] != 'admin') {
 
 <body>
     <p>Add Product</p>
-    <a href="../index.php">Home</a>       
+    <a href="../index.php">Home</a>
     <form class="productForm" action="../logic/addproduct.php" method="post" enctype="multipart/form-data">
         <label for="name">name</label>
         <input name="name" id="name" type="text" required>
@@ -49,8 +49,8 @@ if ($_SESSION['role_user'] != 'admin') {
         $result = $connect->query($sql);
         $row = $result->fetch_assoc();
         ?>
-        <script> 
-       
+        <script>
+
         </script>
         <?php
         // echo 'result';
@@ -68,7 +68,7 @@ if ($_SESSION['role_user'] != 'admin') {
                     <p>ID:<?php echo $pr['id']; ?></p>
                 </div>
                 <div class="adminButtons">
-                    <a href="editProduct.php?id=<?php echo $pr['id']?>">Edit</a>
+                    <a href="editProduct.php?id=<?php echo $pr['id'] ?>">Edit</a>
                     <button class="deleteButton">Delete</button>
                 </div>
             </div>
@@ -79,24 +79,71 @@ if ($_SESSION['role_user'] != 'admin') {
     <?php if (isset($_GET["message"])) { ?>
         <p class="webMessage"><?php echo $_GET["message"] ?></p>
     <?php } ?>
+    <div class="userList">
+        <?php
+        $searchValue = $_POST['search'];
+        var_dump($searchValue);
+        if (empty($searchValue)) {
+            $sqlUser = "SELECT * FROM regusers";
+            $resultUser = $connect->query($sqlUser);
+            $rowUser = $resultUser->fetch_all();
+        } else {
+            $sqlUser = "SELECT * FROM regusers WHERE firstname='$searchValue' OR lastname='$searchValue'";
+            $resultUser = $connect->query($sqlUser);
+            $rowUser = $resultUser->fetch_all();
+        }
+        //  var_dump($rowUser);
+        ?>
+        <div class="userFind">
+            <form action="" method="post">
+                <label for="search">Type firstname or lastname</label><br>
+                <input id="search" name="search" type="text" required>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <table class="userTable">
+        <tr>
+            <th>Id</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Role</th>
+        </tr>
+        <?php
+        foreach ($resultUser as $row) {
+            // var_dump($row);
+            ?>
+                <tr>
+                    <td><?php echo $row['id'] ?></td>
+                    <td><?php echo $row['firstname'] ?></td>
+                    <td><?php echo $row['lastname'] ?></td>
+                    <td><?php echo $row['email'] ?></td>
+                    <td><?php echo $row['userole'] ?></td>
+                </tr>
+            <?php
+        }
+        ?>
+         </table>
+    </div>
     <script src="../js/setTimeOut.js"></script>
     <script>
-         let deleteTarget = document.querySelectorAll('.bookCard');
+        let deleteTarget = document.querySelectorAll('.bookCard');
         let deleteButton = document.querySelectorAll('.deleteButton');
-        console.log(deleteButton);   
+        console.log(deleteButton);
         deleteButton.forEach(e => {
             e.addEventListener("click", askDelete)
-        function askDelete() {
-            let answerDelete = window.confirm("Do you want to delete this book?"); 
-            console.log(answerDelete);
-            if (answerDelete) {
-                console.log('deleted');
-                window.location.href = 'deleteProduct.php?id=<?php echo $pr['id']?>'
-            } else {
-                console.log('not deleted');
-            } 
-        }
+            function askDelete() {
+                let answerDelete = window.confirm("Do you want to delete this book?");
+                console.log(answerDelete);
+                if (answerDelete) {
+                    console.log('deleted');
+                    window.location.href = 'deleteProduct.php?id=<?php echo $pr['id'] ?>'
+                } else {
+                    console.log('not deleted');
+                }
+            }
         });
     </script>
 </body>
+
 </html>

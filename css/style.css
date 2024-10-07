@@ -128,3 +128,15 @@ nav {
     border-left: 3px solid black;
     gap: 30px;
 }
+.userTable,tr,td,th{
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 5px;
+}
+.userList{
+    margin-top: 50px;
+    margin-left: 50px;
+    height: 200px;
+    width: fit-content;
+    overflow-x: auto;
+}
